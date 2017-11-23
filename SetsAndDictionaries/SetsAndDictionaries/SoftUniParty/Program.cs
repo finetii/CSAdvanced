@@ -10,33 +10,30 @@ namespace SoftUniParty
     {
         static void Main(string[] args)
         {
-            SortedSet<string> invites = new SortedSet<string>();
-            SortedSet<string> notCome = new SortedSet<string>();
+            SortedSet<string> invited = new SortedSet<string>();
 
             string input = Console.ReadLine();
 
             while(input != "PARTY")
             {
-                invites.Add(input);
+                invited.Add(input);
                 input = Console.ReadLine();
             }
             input = Console.ReadLine();
             while (input != "END")
             {
-                foreach (var person in invites)
+                if (invited.Any(i => i == input))
                 {
-                    if(input != person)
-                    {
-                        notCome.Add(input);
-                    }
+                    invited.Remove(input);
                 }
                 input = Console.ReadLine();
             }
-            Console.WriteLine(notCome.Count);
-            foreach (var person in notCome)
+            Console.WriteLine(invited.Count);
+            foreach (var person in invited)
             {
                 Console.WriteLine(person);
             }
+            Console.ReadLine();
         }
     }
 }
